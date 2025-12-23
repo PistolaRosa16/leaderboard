@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Leaderboard</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  padding: 40px;
+}
+.leaderboard {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+.player {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.player:last-child {
+  border-bottom: none;
+}
+.rank {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="leaderboard">
+  <h2>🏆 Leaderboard</h2>
+  <div id="list"></div>
+</div>
+
+<script>
+let players = [
+  { name: "Alice", score: 120 },
+  { name: "Bob", score: 95 },
+  { name: "Carlos", score: 140 }
+];
+
+function render() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  players.sort((a, b) => b.score - a.score);
+  players.forEach((p, i) => {
+    list.innerHTML += `
+      <div class="player">
+        <span class="rank">#${i + 1} ${p.name}</span>
+        <span>${p.score}</span>
+      </div>`;
+  });
+}
+
+render();
+</script>
+
+</body>
+</html>
